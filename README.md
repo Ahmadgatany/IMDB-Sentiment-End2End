@@ -122,6 +122,13 @@ pytest tests/
 * **BiLSTM**: deep learning sequence model
 * **DeBERTa**: state-of-the-art transformer
 
+| Model               | Accuracy | Notes                    |
+| ------------------- | -------- | ------------------------ |
+| Logistic Regression | \~86%    | Baseline                 |
+| BiLSTM              | \~89%    | Sequence model           |
+| DeBERTa             | \~95%    | Transformer (fine-tuned) |
+
+
 📌 Final metrics will be updated after running all experiments and logging them in **MLflow**.
 
 ---
