@@ -1,0 +1,44 @@
+tfidf_params:
+  max_features: 10000
+  ngram_range: [1, 2]
+  stop_words: "english"
+
+logistic_regression:
+  max_iter: 250
+  C: 0.1
+  penalty: "l2"
+  random_state: 42
+  
+bilstm:
+  max_len: 200
+  vector_size: 150
+  lstm_units_1: 128
+  lstm_units_2: 64
+  dropout: 0.4
+  dense_units_1: 32
+  dense_units_2: 16
+  l2_reg: 0.0005
+  epochs: 5
+  batch_size: 32
+  learning_rate: 0.001
+
+
+deberta:
+  model:
+    name: "microsoft/deberta-v3-small"
+    num_labels: 2
+    max_length: 256
+
+  training:
+    learning_rate: 2e-5
+    batch_size: 64
+    num_epochs: 2
+    weight_decay: 0.01
+    fp16: true
+    output_dir: "Models/deberta"
+    logging_dir: "Logs/deberta"
+    metric_for_best_model: "accuracy"
+    save_strategy: "epoch"
+    eval_strategy: "epoch"
+    report_to: "none"
+    load_best_model_at_end: true

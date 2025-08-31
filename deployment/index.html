@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMDB Sentiment Analysis</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      width: 400px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      border: 2px solid #ddd;
+      border-radius: 12px;
+      padding: 10px;
+      font-size: 14px;
+      resize: none;
+      margin-bottom: 15px;
+    }
+    select, button {
+      padding: 10px;
+      border-radius: 12px;
+      border: none;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    select {
+      width: 100%;
+      background: #f1f1f1;
+    }
+    button {
+      width: 100%;
+      background: #6c63ff;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #5548e0;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .positive {
+      background: #d4fcd4;
+      color: #2e7d32;
+    }
+    .negative {
+      background: #ffe0e0;
+      color: #c62828;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎬 Sentiment Analyzer</h1>
+    <textarea id="text" placeholder="Type your review here..."></textarea>
+    <select id="model">
+      <option value="logistic">Logistic Regression</option>
+      <option value="bilstm">BiLSTM</option>
+      <option value="deberta">DeBERTa</option>
+    </select>
+    <button onclick="predict()">Predict</button>
+    <div id="result" class="result" style="display:none;"></div>
+  </div>
+
+  <script>
+    async function predict() {
+      const text = document.getElementById("text").value;
+      const model = document.getElementById("model").value;
+      const resultDiv = document.getElementById("result");
+
+      if (!text) {
+        alert("Please enter some text!");
+        return;
+      }
+
+      const response = await fetch("http://127.0.0.1:8000/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: text, model_name: model })
+      });
+
+      const data = await response.json();
+      resultDiv.style.display = "block";
+      resultDiv.innerHTML = `Model: <b>${data.model}</b><br>Prediction: <b>${data.prediction}</b>`;
+      resultDiv.className = `result ${data.prediction}`;
+    }
+  </script>
+</body>
+</html>

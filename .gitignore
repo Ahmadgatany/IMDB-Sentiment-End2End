@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pkl
+*.h5
+*.log
+*.sqlite3
+*.egg-info/
+
+# Virtual environments
+.env
+.venv/
+env/
+venv/
+
+# Data (raw and processed)
+data/raw/*
+!data/raw/README.md
+data/processed/*
+!data/processed/README.md
+data/predictions/*
+
+# Models
+models/*
+!models/README.md
+
+# DVC
+*.lock
+.dvc/tmp/
+.dvc/cache/
+
+# MLflow
+mlruns/
+
+# Notebooks
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+
+# Deployment
+deployment/__pycache__/
+deployment/*.pyc
+
+# OS / IDE
+.DS_Store
+*.swp
+.idea/
+.vscode/

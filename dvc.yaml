@@ -1,0 +1,55 @@
+stages:
+  preprocess:
+    cmd: python src/data_preprocessing.py
+    deps:
+    - src/data_preprocessing.py
+    - Data/raw/IMDB Dataset.csv
+    outs:
+    - Data/processed/train.csv
+    - Data/processed/val.csv
+    - Data/processed/test.csv
+
+  train_logistic:
+    cmd: python src/train_logistic.py
+    deps:
+    - Data/processed/train.csv
+    - Data/processed/val.csv
+    - src/train_logistic.py
+    outs:
+    - models/logistic_model.pkl
+
+    frozen: true
+  train_bilstm:
+    cmd: python src/train_bilstm.py
+    deps:
+    - Data/processed/train.csv
+    - Data/processed/val.csv
+    - src/train_bilstm.py
+    outs:
+    - models/bilstm_model.h5
+
+    frozen: true
+  train_deberta:
+    cmd: python src/train_deberta.py
+    deps:
+    - Data/raw/IMDB Dataset.csv
+    - src/train_deberta.py
+    outs:
+    -  models/deberta
+
+    frozen: true
+  evaluate:
+    cmd: python src/compare_models.py
+    deps:
+    - src/compare_models.py
+    - models/logistic_model.pkl
+    - models/bilstm_model.h5
+    - models/deberta
+    - Data/processed/test.csv
+    outs:
+    - Data/predictions/comparison_results.csv
+    - Data/predictions/model_comparison.png
+    metrics:
+    - metrics/logistic_model.json
+    - metrics/bilstm_model.json
+    - metrics/deberta_model.json
