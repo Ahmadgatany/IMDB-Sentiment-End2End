@@ -72,7 +72,7 @@ NLP-Sentiment-IMDB/
 
 ---
 
-## ⚙️ Usage
+## ⚙️ Installation & Usage
 
 ### 1. Setup Environment
 
@@ -97,7 +97,13 @@ mlflow ui
 ```bash
 uvicorn deployment.app:app --reload
 ```
+Then visit 👉 http://127.0.0.1:8000
 
+### 5. Clone the repository
+```bash
+git clone https://github.com/Ahmadgatany/IMDB-Sentiment-End2End.git
+cd IMDB-Sentiment-End2End
+```
 ---
 
 ## 🧪 Testing
