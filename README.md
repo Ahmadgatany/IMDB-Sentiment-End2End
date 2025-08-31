@@ -1,13 +1,19 @@
-# 🎬 IMDB-Sentiment-End2End
+# 🎬 IMDB Sentiment End-to-End
 
-A professional **Sentiment Analysis** project on **IMDB Reviews** using multiple models: **Logistic Regression, BiLSTM, and DeBERTa**.
+This project implements an **End-to-End Machine Learning Pipeline** for sentiment analysis on the IMDB movie reviews dataset.  
+It covers the full lifecycle of an ML project: from **data preprocessing**, **model training**, **evaluation**, to **deployment** using FastAPI & Docker.  
 
-The project follows **MLOps practices** including:
+---
 
-* **DVC** for data and model versioning
-* **MLflow** for experiment tracking
-* **CI/CD** with GitHub Actions
-* **FastAPI + Docker** for deployment
+## 🚀 Features
+- Preprocessing pipeline with DVC for reproducibility.  
+- Multiple models implemented and compared:
+  - Logistic Regression
+  - BiLSTM
+  - DeBERTa (transformer-based)
+- Experiment tracking with **MLflow**.  
+- Deployment-ready FastAPI app with Docker.  
+- Organized project structure (config-driven).  
 
 ---
 
