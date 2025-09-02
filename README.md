@@ -34,10 +34,6 @@ NLP-Sentiment-IMDB/
 │   ├── logistic_model.pkl
 │   ├── bilstm_model.h5
 │   ├── deberta_model/
-├── notebooks/
-│   ├── classic_models.ipynb
-│   ├── transformer_deberta.ipynb
-│   └── comparison_analysis.ipynb
 ├── src/
 │   ├── data_preprocessing.py
 │   ├── train_logistic.py
